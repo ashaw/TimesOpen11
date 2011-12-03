@@ -7,6 +7,9 @@ gem 'rails', '3.0.9'
 
 gem 'sqlite3'
 gem 'fastercsv'
+gem 'ruby-stemmer'
+gem 'crack'
+gem 'twitter-text'
 
 # Use unicorn as the web server
 # gem 'unicorn'
