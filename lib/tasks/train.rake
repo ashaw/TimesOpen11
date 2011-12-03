@@ -8,9 +8,10 @@ namespace :classifier do
   task :classify => :environment do
     classifier = TweetClassifier.new
 
-    Tweet.all.each do |t|
+    Tweet.where(:happiness_string => nil).order("id ASC").all.each do |t|
       t.happiness_string = classifier.classify t.text
       t.save
+      puts "#{t.id}: #{t.happiness_string}: #{t.text[0..80]}"
     end
   end
 end
