@@ -1,5 +1,4 @@
 .bundle
 log/*.log
 tmp/
-lib/tasks/get_oauth.rake
-lib/tasks/get_tweets.rake
+heartkeys.yml
