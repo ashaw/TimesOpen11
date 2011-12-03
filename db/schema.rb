@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20111203200136) do
 
   create_table "lines", :force => true do |t|
     t.string "name"
+    t.float  "happiness_index"
   end
 
   create_table "lines_stations", :id => false, :force => true do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20111203200136) do
     t.float  "latitude"
     t.float  "longitude"
     t.string "happiness_string"
+    t.float  "happiness_index"
   end
 
   create_table "tweets", :force => true do |t|
@@ -47,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20111203200136) do
     t.text    "text"
     t.float   "happiness"
     t.string  "language"
+    t.string  "happiness_string"
   end
 
 end
