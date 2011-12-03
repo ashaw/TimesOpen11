@@ -4,10 +4,19 @@
         <link type="text/css" rel="stylesheet" media="all" href="/stylesheets/lines.css" />
     </head>
     <body>
+      
+      <div id="line-circles">
+        <% Line.all.each do |line| %>
+          <a href="/lines/<%= line.name %>"><img title="<%= line.name %>" src="/assets/<%= line_img(line.name) %>.png" /></a>
+        <% end %>
+      </div>
+      
         <div id="topbar">
+          
+          
             <div id="top-line"></div>
             <img src="/assets/Face_Happy.png" class="happy-face-icon"/>
-            <img src=" <%= "/assets/#{@line.name}_large.png" %>" class="line-icon"/>
+            <img src=" <%= "/assets/#{line_img(@line.name)}_large.png" %>" class="line-icon"/>
             <img src="/assets/Face_Sad.png" class="sad-face-icon"/>
         </div>
         <div id="main">
