@@ -13,6 +13,7 @@ class TweetClassifier
   def initialize
     @features   = {}
     @categories = []
+    @category_count = {}
     category(:good)
     category(:bad)
   end
@@ -28,7 +29,7 @@ class TweetClassifier
         best = cat
       end
     end
-    best = :unknown if p < 1e-5
+    best = :unknown if p < 1e-10
     best
   end
 
@@ -79,7 +80,7 @@ class TweetClassifier
   end
 
   def category_count(sym)
-    @features.values.reduce(0) do |memo, value|
+    @category_count[sym] ||= @features.values.reduce(0) do |memo, value|
       memo + (value[sym] || 0)
     end
   end
