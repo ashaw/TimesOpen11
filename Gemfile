@@ -9,7 +9,7 @@ gem 'sqlite3'
 gem 'fastercsv'
 gem 'ruby-stemmer'
 gem 'crack'
-
+gem 'rest-client'
 # Use unicorn as the web server
 # gem 'unicorn'
 
