@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'ruby-stemmer'
 gem 'crack'
 gem 'twitter-text'
+gem 'rest-client'
 # Use unicorn as the web server
 # gem 'unicorn'
 

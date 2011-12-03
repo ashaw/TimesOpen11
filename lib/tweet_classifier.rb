@@ -98,12 +98,22 @@ class TweetClassifier
     return File.read(training_file).split("\n") if File.exists? training_file
 
     send("#{cons}_words").map { |word|
-      resp = Crack::JSON.parse RestClient.get(SEARCH, :params => {:q => word, :result_type => "mixed", :rpp => 100})
-      resp['results'].map do |tweet|
+
+      resp = (1..20).map do |idx|
+        p SEARCH, :params => {:q => word, :page => idx, :lang => :en, :rpp => 100}
+        Crack::JSON.parse(RestClient.get(SEARCH, :params => {:q => word, :page => idx, :lang => :en, :rpp => 100}))['results']
+      end.flatten
+      resp.map do |tweet|
         text = tweet['text'].gsub("\n", "")
         File.open(training_file, (File::WRONLY | File::APPEND | File::CREAT)) { |f| f.puts text }
         text
       end
     }.flatten
   end
+
+  def self.train!
+    FileUtils.rm_r MODELS if File.exists? MODELS
+    TweetClassifier.new
+  end
+
 end
