@@ -9,7 +9,7 @@
             <img src=" <%= "/assets/#{@line.name}_large.png" %>" class="line-icon"/>
         </div>
         <div id="main">
-            <% @line.stations.each do |station| %>
+            <% @stations.each do |station| %>
                 <div class="station-bar">
                     <h3 class="station-name"><%= station.station_name %></h3>
                     <div class="station-line"></div>
