@@ -6,7 +6,9 @@
     <body>
         <div id="topbar">
             <div id="top-line"></div>
+            <img src="/assets/Face_Happy.png" class="happy-face-icon"/>
             <img src=" <%= "/assets/#{@line.name}_large.png" %>" class="line-icon"/>
+            <img src="/assets/Face_Sad.png" class="sad-face-icon"/>
         </div>
         <div id="main">
             <% @stations.each do |station| %>
