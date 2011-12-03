@@ -28,7 +28,7 @@ class TweetClassifier
         best = cat
       end
     end
-    best = :unknown if p < 1e-8
+    best = :unknown if p < 1e-5
     best
   end
 
