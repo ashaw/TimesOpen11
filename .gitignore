@@ -2,3 +2,4 @@
 log/*.log
 tmp/
 heartkeys.yml
+.DS_Store
