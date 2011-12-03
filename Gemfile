@@ -13,6 +13,7 @@ gem 'fastercsv'
 gem 'ruby-stemmer'
 gem 'crack'
 gem 'rest-client'
+gem 'ruby-stemmer', :require => 'lingua/stemmer'
 
 group :development do
   gem 'mongrel'

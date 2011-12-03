@@ -1,13 +1,12 @@
-# from http://www.lrec-conf.org/proceedings/lrec2010/pdf/385_Paper.pdf
-require 'lingua/stemmer'
-
+# from http://www.lrec-conf.org/proceedings/lrec2010/pdf/385_Paper.pdf -ish
 class TweetClassifier
-  GOOD   = ':)'
-  BAD    = ':('
-  SEARCH = 'http://search.twitter.com/search.json'
-  ROOT   = File.dirname(__FILE__)
-  MODELS = File.join(ROOT, 'models')
-
+  GOOD      = ':)'
+  BAD       = ':('
+  SEARCH    = 'http://search.twitter.com/search.json'
+  ROOT      = File.dirname(__FILE__)
+  MODELS    = File.join(ROOT, 'models')
+  STEMMER   = Lingua::Stemmer.new
+  SAFEWORDS = ["the","and","to","of","a","I","in","was","he","that","it","his","her","you","as","had","with","for","she","not","at","but","be","my","on","have","him","is","said","me","which","by","so","this","all","from","they","no","were","if","would","or","when","what","there","been","one","could","very","an"]
 
   def initialize
     @features   = {}
@@ -26,7 +25,7 @@ class TweetClassifier
         best = cat
       end
     end
-    best
+    { :category => best, :p => p }
   end
 
   def probability(category, doc)
@@ -53,7 +52,8 @@ class TweetClassifier
   def as_features(doc)
     doc.split(/\W+/).map { |word|
       next if word.length > 20 || word.length < 2
-      word.downcase
+      next if SAFEWORDS.include? word
+      STEMMER.stem(word.downcase)
     }.compact
   end
 
@@ -114,3 +114,5 @@ class TweetClassifier
     TweetClassifier.new
   end
 end
+
+
