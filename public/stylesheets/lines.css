@@ -14,6 +14,14 @@ body{
     z-index:500;
 }
 
+#line-circles {
+  height:20px;
+  text-align:center;
+  margin-top:20px;
+  z-index:999;
+  position:relative;
+}
+
 .line-icon{
     position:absolute;
     left:50%;
