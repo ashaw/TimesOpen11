@@ -116,23 +116,11 @@ class TweetClassifier
         end
       end.compact
     end
-    # deprecated
-    client = HappySubways.get_auth
-    send("#{cons}_words").map { |word|
-      resp = (1..15).map do |idx|
-        client.search.json?(:q => word, :page => idx, :lang => :en, :rpp => 100).results
-      end.flatten
-      resp.map do |tweet|
-        text = tweet.text.gsub("\n", "")
-        File.open(training_file, (File::WRONLY | File::APPEND | File::CREAT)) { |f| f.puts text }
-        text
-      end
-    }.flatten
-  end
+    puts <<-WARN
+      no training data for #{cons} run:
 
-  def self.train!
-    # FileUtils.rm_r MODELS if File.exists? MODELS
-    # TweetClassifier.new
+      curl --data-urlencode 'track=:)' https://stream.twitter.com/1/statuses/filter.json -uUSERNAME > lib/models/#{cons}_words.train 
+    WARN
   end
 end
 
