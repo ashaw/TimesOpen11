@@ -1,3 +1,3 @@
-class Tweet < ActiveRecord::base
+class Tweet < ActiveRecord::Base
   belongs_to :station
 end
