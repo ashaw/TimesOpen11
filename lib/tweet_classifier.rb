@@ -52,11 +52,16 @@ class TweetClassifier
     as_features(doc).inject(1) { |prob, feature| prob * weighted_probability(cat, feature) }
   end
 
+  def clean_word(word)
+    return false if (word.length > 20 || word.length < 2 || SAFEWORDS.include?(word) || (word =~ /(^|[^a-zA-Z0-9_])[@＠]([a-zA-Z0-9_]{1,20})/o))
+    STEMMER.stem(word.downcase)
+  end
+
   def as_features(doc)
     doc.split(/\W+/).map { |word|
-      next if word.length > 20 || word.length < 2
-      next if SAFEWORDS.include? word
-      STEMMER.stem(word.downcase)
+      word = clean_word word
+      next if !word
+      word
     }.compact
   end
 
@@ -102,7 +107,7 @@ class TweetClassifier
 
     client = HappySubways.get_auth
     send("#{cons}_words").map { |word|
-      resp = (1..10).map do |idx|
+      resp = (1..20).map do |idx|
         client.search.json?(:q => word, :page => idx, :lang => :en, :rpp => 100).results
       end.flatten
       resp.map do |tweet|
