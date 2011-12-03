@@ -11,7 +11,7 @@ body{
     right:0;
     left:0;
     border-bottom:1px ridge #333;
-    z-index:10;
+    z-index:500;
 }
 
 #line-line{
@@ -23,6 +23,26 @@ body{
     left: 50%;  
     margin-left: -7.5px;  
     z-index:-1;
+}
+
+#top-line{
+    background-color:#666;
+    position:absolute;
+    top:50px;
+    bottom:-1px;
+    width:15px;
+    left: 50%;  
+    margin-left: -7.5px;  
+}
+
+.station-line{
+    background-color:#666;
+    position:absolute;
+    top:-1px;
+    bottom:-1px;
+    width:15px;
+    left: 50%;  
+    margin-left: -7.5px;  
 }
 
 #main{
@@ -43,7 +63,9 @@ body{
     -webkit-border-radius:5px;
     border:1px ridge #333;
     z-index:100;
+    position:relative;
 }
+
 
 .station-bar .station-name{
     color:white;
@@ -54,4 +76,7 @@ body{
     text-align:center;
     margin:0;
     z-index:50;
+    padding-top:5px;
+    position:relative;
+    text-shadow:0px 0px 10px #111;
 }
