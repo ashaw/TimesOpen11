@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Line | <%= @line.name %></title>
+        <link type="text/css" rel="stylesheet" media="all" href="/stylesheets/lines.css" />
+    </head>
+    <body>
+        <div id="topbar">
+            <div id="top-line"></div>
+            <img src="/assets/Face_Happy.png" class="happy-face-icon"/>
+            <img src=" <%= "/assets/#{@line.name}_large.png" %>" class="line-icon"/>
+            <img src="/assets/Face_Sad.png" class="sad-face-icon"/>
+        </div>
+        <div id="main">
+            <% @stations.each do |station| %>
+                <div class="station-bar">
+                    <h3 class="station-name"><%= station.station_name %></h3>
+                    <div class="station-line"></div>
+                    <div class="happy-bar"></div>
+                    <div class="sad-bar"></div>
+                </div>
+            <% end %>
+        <div id="line-line"></div>
+        </div>
+    </body>
+</html>
