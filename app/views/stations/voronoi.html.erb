@@ -1,35 +1,67 @@
-<script type="text/javascript">
-var vertices = d3.range(100).map(function(d) {
-  return [Math.random() * w, Math.random() * h];
-});
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Voronoi Diagram</title>
+    <script type="text/javascript" src="/javascripts/d3.js"></script>
+    <script type="text/javascript" src="/javascripts/d3.geom.js"></script>
+    <style type="text/css">
+    	body {
+    		margin:0;
+    	}
+    	#voronoi {
+    		border:16px solid #000;
+    		position:absolute;
+    		top:0;
+    		right:0;
+    		bottom:0;
+    		left:0;
+    	}
+    </style>
+  </head>
+  <body>
 
-var svg = d3.select("#chart")
-  .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h)
-    .attr("class", "PiYG")
-    .on("mousemove", update);
+	<div id='voronoi'></div>
+  <script type="text/javascript">
+    var stations = <%=j @stations.to_json %>;
 
-svg.selectAll("path")
-    .data(d3.geom.voronoi(vertices))
-  .enter().append("svg:path")
-    .attr("class", function(d, i) { return i ? "q" + (i % 9) + "-9" : null; })
-    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
+  	var w = 960,
+				h = 500;
 
-svg.selectAll("circle")
-    .data(vertices.slice(1))
-  .enter().append("svg:circle")
-    .attr("transform", function(d) { return "translate(" + d + ")"; })
-    .attr("r", 2);
+		var vertices = d3.range(100).map(function(d) {
+		  return [Math.random() * w, Math.random() * h];
+		});
 
-function update() {
-  vertices[0] = d3.svg.mouse(this);
-  svg.selectAll("path")
-      .data(d3.geom.voronoi(vertices)
-      .map(function(d) { return "M" + d.join("L") + "Z"; }))
-      .filter(function(d) { return this.getAttribute("d") != d; })
-      .attr("d", function(d) { return d; });
-}
-</script>
+		// console.log(vertices)
+		vertices = stations.map(function(station) {
+			// return [station[0] * w, station[1] * h]
+			return [station[1] * w, h - (station[0] * h), station[2]]
+		})
 
-<h1>Voronoi</h1>
+		// console.log(vertices)
+		// vertices = stations
+
+		var svg = d3.select("#voronoi")
+		  .append("svg:svg")
+		    // .attr("width", w)
+		    // .attr("height", h)
+		    .attr("class", "PiYG");
+
+		svg.selectAll("path")
+		    .data(d3.geom.voronoi(vertices))
+		  .enter().append("svg:path")
+		    .attr("fill", function(d, i) { return 'rgb(' + Math.round(vertices[i][2] * 255) + ',0,0)' })
+		    .attr("stroke-width", 0.5)
+		    .attr("stroke", "#000")
+		    .attr("d", function(d) { return "M" + d.join("L") + "Z"; });
+
+		svg.selectAll("circle")
+		    .data(vertices)
+		  .enter().append("svg:circle")
+		    .attr("transform", function(d) { return "translate(" + d + ")"; })
+		    .attr("r", 2);
+
+    </script>
+
+  </body>
+</html>

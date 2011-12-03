@@ -1,6 +1,6 @@
 task :stations => :environment do
   latlng_re = /(^[\d]{2}|^[-\d]{3})(\d+$)/
-  
+
   csv = FasterCSV.open("#{Rails.root.to_s}/db/initial/StationEntrances.csv", :headers => true).each do |row|
     next if row.header_row?
     station = Station.new
@@ -24,6 +24,16 @@ task :stations => :environment do
     station.save
     p station
   end
+end
+
+task :cache_happiness => :environment do
+
+  Station.all.each do |station|
+    happy, sad, total = station.get_happiness
+    station.happiness_index = happy / total
+    station.save!
+  end
+
 end
 
 

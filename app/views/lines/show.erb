@@ -5,14 +5,14 @@
     </head>
     <body>
       
-      <div id="line-circles">
-        <% Line.all.each do |line| %>
-          <a href="/lines/<%= line.name %>"><img title="<%= line.name %>" src="/assets/<%= line_img(line.name) %>.png" /></a>
-        <% end %>
-      </div>
       
         <div id="topbar">
           
+      <div id="line-circles">
+        <% Line.all.each do |line| %>
+            <a class="line-circle <% if line.name == @line.name %>selected<% end %>" href="/lines/<%= line.name %>"><img title="<%= line.name %>" src="/assets/<%= line_img(line.name) %>.png" /></a>
+        <% end %>
+      </div>
           
             <div id="top-line"></div>
             <img src="/assets/Face_Happy.png" class="happy-face-icon"/>
@@ -21,14 +21,21 @@
         </div>
         <div id="main">
             <% @stations.each do |station| %>
+                <% happy,sad,total = station.get_happiness; %>
                 <div class="station-bar">
                     <h3 class="station-name"><%= station.station_name %></h3>
                     <div class="station-line"></div>
-                    <div class="happy-bar"></div>
-                    <div class="sad-bar"></div>
+                    <div class="happy-bar" data-station_id="<%= station.id %>"></div>
+                    <div class="sad-bar" data-station_id="<%= station.id %>"></div>
                 </div>
             <% end %>
         <div id="line-line"></div>
-        </div>
+    </div>
+    <script src="/javascripts/jquery-1.7.1.min.js"></script>
+    <script src="/javascripts/underscore-min.js"></script>
+    <script>
+        raw_data = JSON.parse(<%=raw @line.get_raw_data.inspect %>);
+    </script>
+    <script src="/javascripts/lines.js"></script>
     </body>
 </html>
