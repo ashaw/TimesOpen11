@@ -25,3 +25,15 @@ task :stations => :environment do
     p station
   end
 end
+
+
+task :centroids => :environment do
+  csv = FasterCSV.open("#{Rails.root}/db/initial/centroids.csv", :headers => true).each do |row|
+    station = Station.where(:line => row['line'], :division => row['division'], :station_name => row['station_name']).first
+
+    station.latitude = row['lat']
+    station.longitude = row['lng']
+    puts station.inspect unless station.save
+  end
+
+end
