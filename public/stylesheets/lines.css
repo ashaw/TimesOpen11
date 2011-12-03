@@ -4,7 +4,7 @@ body{
 
 #topbar{
     background-color:#222;
-    height:100px;
+    height:120px;
     position:fixed;
     width:100%;
     top:0;
@@ -12,6 +12,17 @@ body{
     left:0;
     border-bottom:1px ridge #333;
     z-index:500;
+}
+
+.happy-face-icon{
+    position:absolute;
+    right:20%;
+    top:50px;
+}
+.sad-face-icon{
+    position:absolute;
+    left:20%;
+    top:40px;
 }
 
 #line-circles {
@@ -26,7 +37,7 @@ body{
     position:absolute;
     left:50%;
     margin-left:-25px;
-    top:25px;
+    top:53px;
 }
 
 #line-line{
@@ -43,11 +54,26 @@ body{
 #top-line{
     background-color:#666;
     position:absolute;
-    top:50px;
+    top:60px;
     bottom:-1px;
     width:15px;
     left: 50%;  
     margin-left: -7.5px;  
+}
+
+.line-circle{
+    opacity:0.25;
+    -moz-opacity:0.25;
+}
+
+.line-circle.selected{
+    opacity:1;
+    -moz-opacity:1;
+}
+
+.line-circle:hover{
+    opacity:1;
+    -moz-opacity:1;
 }
 
 .station-line{
@@ -66,7 +92,7 @@ body{
     margin-left:auto;
     margin-right:auto;
     position:relative;
-    padding-top:100px;
+    padding-top:130px;
 }
 
 .station-bar{
