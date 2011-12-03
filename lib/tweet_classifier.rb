@@ -1,4 +1,6 @@
 # from http://www.lrec-conf.org/proceedings/lrec2010/pdf/385_Paper.pdf -ish
+require "#{Rails.root}/lib/get_auth"
+
 class TweetClassifier
   GOOD      = ':)'
   BAD       = ':('
@@ -6,7 +8,7 @@ class TweetClassifier
   ROOT      = File.dirname(__FILE__)
   MODELS    = File.join(ROOT, 'models')
   STEMMER   = Lingua::Stemmer.new
-  SAFEWORDS = ["the","and","to","of","a","I","in","was","he","that","it","his","her","you","as","had","with","for","she","not","at","but","be","my","on","have","him","is","said","me","which","by","so","this","all","from","they","no","were","if","would","or","when","what","there","been","one","could","very","an"]
+  SAFEWORDS = ["the","and","to","of","a","i","in","was","he","that","it","his","her","you","as","had","with","for","she","not","at","but","be","my","on","have","him","is","said","me","which","by","so","this","all","from","they","no","were","if","would","or","when","what","there","been","one","could","very","an"]
 
   def initialize
     @features   = {}
@@ -17,6 +19,7 @@ class TweetClassifier
 
   def classify(doc)
     max = 0
+    p = 0
     best = :unknown
     @categories.each do |cat|
       p = probability(cat, doc)
@@ -25,7 +28,7 @@ class TweetClassifier
         best = cat
       end
     end
-    { :category => best, :p => p }
+    best
   end
 
   def probability(category, doc)
@@ -49,11 +52,16 @@ class TweetClassifier
     as_features(doc).inject(1) { |prob, feature| prob * weighted_probability(cat, feature) }
   end
 
+  def clean_word(word)
+    return false if (word.length > 20 || word.length < 2 || SAFEWORDS.include?(word) || (word =~ /(^|[^a-zA-Z0-9_])[@＠]([a-zA-Z0-9_]{1,20})/o))
+    STEMMER.stem(word.downcase)
+  end
+
   def as_features(doc)
     doc.split(/\W+/).map { |word|
-      next if word.length > 20 || word.length < 2
-      next if SAFEWORDS.include? word
-      STEMMER.stem(word.downcase)
+      word = clean_word word
+      next if !word
+      word
     }.compact
   end
 
@@ -97,12 +105,13 @@ class TweetClassifier
     training_file = File.join(ROOT, "models", "#{cons}_words.train")
     return File.read(training_file).split("\n") if File.exists? training_file
 
+    client = HappySubways.get_auth
     send("#{cons}_words").map { |word|
       resp = (1..20).map do |idx|
-        Crack::JSON.parse(RestClient.get(SEARCH, :params => {:q => word, :page => idx, :lang => :en, :rpp => 100}))['results']
+        client.search.json?(:q => word, :page => idx, :lang => :en, :rpp => 100).results
       end.flatten
       resp.map do |tweet|
-        text = tweet['text'].gsub("\n", "")
+        text = tweet.text.gsub("\n", "")
         File.open(training_file, (File::WRONLY | File::APPEND | File::CREAT)) { |f| f.puts text }
         text
       end

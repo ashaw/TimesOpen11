@@ -1,9 +1,9 @@
 require 'rubygems'
 require 'twitter_oauth'
 
-options = YAML::load(File.open("#{Rails.root.to_s}/heartkeys.yml"))
-
 task :get_token => :environment do
+  options = YAML::load(File.open("#{Rails.root.to_s}/heartkeys.yml"))
+
   client = TwitterOAuth::Client.new(
     :consumer_key     => options.consumer_key,
     :consumer_secret  => options.consumer_secret 
