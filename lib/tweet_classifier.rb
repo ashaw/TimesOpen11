@@ -28,6 +28,7 @@ class TweetClassifier
         best = cat
       end
     end
+    best = :unknown if p < 1e-8
     best
   end
 
@@ -107,7 +108,8 @@ class TweetClassifier
 
     client = HappySubways.get_auth
     send("#{cons}_words").map { |word|
-      resp = (1..20).map do |idx|
+      resp = (1..15).map do |idx|
+        p idx
         client.search.json?(:q => word, :page => idx, :lang => :en, :rpp => 100).results
       end.flatten
       resp.map do |tweet|
