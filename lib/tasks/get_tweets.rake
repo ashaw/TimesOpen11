@@ -4,7 +4,7 @@ require "#{Rails.root}/lib/get_auth"
 task :get_tweets => :environment do
   client = HappySubways.get_auth
 
-  Station.all_entrances.each do |entrance|
+  Station.all.each do |entrance|
       next if entrance.tweets.size > 0
       
       lat =  entrance.latitude
