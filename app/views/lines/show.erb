@@ -12,11 +12,13 @@
         </div>
         <div id="main">
             <% @stations.each do |station| %>
+                <% happy,sad,total = station.get_happiness; %>
                 <div class="station-bar">
                     <h3 class="station-name"><%= station.station_name %></h3>
                     <div class="station-line"></div>
-                    <div class="happy-bar" style="width:<%= station.get_happiness[0]/50.0 * 480 %>;"></div>
-                    <div class="sad-bar" style="width:<%= station.get_happiness[1]/50.0 * 480 %>"></div>
+                    <div class="happy-bar" style="width:<%= happy/total * 280 %>px;"></div>
+                    <div class="sad-bar" style="width:<%= sad/total * 280 %>px;"></div>
+                    <p><%= station.get_happiness %></p>
                 </div>
             <% end %>
         <div id="line-line"></div>

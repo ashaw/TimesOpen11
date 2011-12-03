@@ -5,7 +5,7 @@ class Station < ActiveRecord::Base
   def get_happiness
       happy = self.tweets.where(:happiness_string => "good").count
       sad = self.tweets.where(:happiness_string => "bad").count
-      [happy,sad]
+      [happy.to_f,sad.to_f,happy.to_f+sad.to_f]
   end
 
 end
