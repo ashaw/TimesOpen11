@@ -2,8 +2,8 @@
 require "#{Rails.root}/lib/get_auth"
 
 class TweetClassifier
-  GOOD      = ':)'
-  BAD       = ':('
+  GOOD      = [":)"]
+  BAD       = [":("]
   SEARCH    = 'http://search.twitter.com/search.json'
   ROOT      = File.dirname(__FILE__)
   MODELS    = File.join(ROOT, 'models')
