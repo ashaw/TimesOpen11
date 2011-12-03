@@ -9,8 +9,10 @@ gem 'sqlite3'
 gem 'fastercsv'
 gem 'ruby-stemmer'
 gem 'crack'
-gem 'twitter-text'
+# gem 'twitter-text'
 gem 'rest-client'
+gem 'ruby-stemmer', :require => 'lingua/stemmer'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
