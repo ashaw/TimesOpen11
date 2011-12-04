@@ -25,12 +25,13 @@ task :stations => :environment do
     p station
   end
 end
-
+desc "cache happiness"
 task :cache_happiness => :environment do
 
   Station.all.each do |station|
     happy, sad, total = station.get_happiness
-    station.happiness_index = happy / total
+    station.happiness = happy / total
+    station.sadness = sad / total
     station.save!
   end
 
