@@ -89,8 +89,11 @@
 		circle.attr("fill", "#349d2c");
 		circle.attr("opacity", 0.75);
 		circle.attr("stroke-width", 0);
-		happyPaper.image('/images/homepage_stops/' + line_img(line['name']) + '.png', x-19, y-18, 40, 40);
+		imageName = happyPaper.image('/images/homepage_stops/' + line_img(line['name']) + '.png', x-19, y-18, 40, 40);
 
+		imageName.click(function() {
+			window.location = '/lines/' + line['name'];
+		})
 		circles.push(circle);
 
 	})
