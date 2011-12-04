@@ -4,16 +4,16 @@
         <link type="text/css" rel="stylesheet" media="all" href="/stylesheets/lines.css" />
     </head>
     <body>
-      
-      
+
+
         <div id="topbar">
-          
+
       <div id="line-circles">
-        <% Line.all.each do |line| %>
+        <% Line.order(:name).all.each do |line| %>
             <a class="line-circle <% if line.name == @line.name %>selected<% end %>" href="/lines/<%= line.name %>"><img title="<%= line.name %>" src="/assets/<%= line_img(line.name) %>.png" /></a>
         <% end %>
       </div>
-          
+
             <div id="top-line"></div>
             <img src="/assets/Face_Happy.png" class="happy-face-icon"/>
             <img src=" <%= "/assets/#{line_img(@line.name)}_large.png" %>" class="line-icon"/>
