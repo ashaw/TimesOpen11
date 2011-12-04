@@ -26,4 +26,12 @@ class Line < ActiveRecord::Base
 
   end
 
+  def happiness
+  	self.stations.inject(0) { |sum, station| sum + station.happiness_index } / self.stations.count
+  end
+
+  def as_json(options={})
+  	super(:methods => :happiness, :except => :happiness_index)
+  end
+
 end

@@ -3,7 +3,7 @@ class Station < ActiveRecord::Base
   has_and_belongs_to_many :lines  
 
   def get_happiness
-      happy = self.tweets.all.select{|t| t.happiness_string == "good" && t.time_string == nil}.length
+      happy = self.tweets.where(:happiness_string => "good", :time_string => nil).count #{|t| t.happiness_string == "good" && t.time_string == nil}.length
       sad = self.tweets.all.select{|t| t.happiness_string == "bad" && t.time_string == nil}.length
       [happy.to_f,sad.to_f,happy.to_f+sad.to_f]
   end
@@ -13,6 +13,4 @@ class Station < ActiveRecord::Base
       sad = self.tweets.all.select{|t| t.happiness_string == "bad" && t.time_string == "night"}.length
       [happy.to_f,sad.to_f,happy.to_f+sad.to_f]
   end
-
-
 end

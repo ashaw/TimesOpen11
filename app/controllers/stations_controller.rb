@@ -26,7 +26,7 @@ class StationsController < ApplicationController
   		# happy, sad, total = station.get_happiness
   		# happy_index = happy / total
   		happy_index = (station.happiness_index - min_happy) / happy_r
-		  [lat, lng, happy_index]
+		  [lat, lng, happy_index, station.station_name]
 		end
 
 		lat_r = @max_lat - @min_lat
@@ -39,7 +39,7 @@ class StationsController < ApplicationController
   		lat = ((lat - @min_lat) / lat_r)
   		lng = ((lng - @min_lng) / lng_r)
 
-		  [lat, lng, station[2]]
+		  [lat, lng, station[2], station[3]]
   	end
 
 

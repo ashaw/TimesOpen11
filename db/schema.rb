@@ -10,11 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111203231658) do
+ActiveRecord::Schema.define(:version => 20111204012804) do
 
   create_table "lines", :force => true do |t|
     t.string "name"
-    t.float  "happiness_index"
   end
 
   create_table "lines_stations", :id => false, :force => true do |t|
@@ -41,7 +40,8 @@ ActiveRecord::Schema.define(:version => 20111203231658) do
     t.float  "latitude"
     t.float  "longitude"
     t.string "happiness_string"
-    t.float  "happiness_index"
+    t.float  "sadness"
+    t.float  "happiness"
   end
 
   create_table "tweets", :force => true do |t|
