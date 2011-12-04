@@ -129,6 +129,9 @@ body{
     bottom:0;
     width:50px;
     position:absolute;
+    transition: width 1s;  
+    -moz-transition: width 1s;  
+    -webkit-transition: width 1s;  
 }
 
 .station-bar .sad-bar{
@@ -138,4 +141,7 @@ body{
     top:0;
     bottom:0;
     position:absolute;
+    transition: width 1s;  
+    -moz-transition: width 1s;  
+    -webkit-transition: width 1s;  
 }

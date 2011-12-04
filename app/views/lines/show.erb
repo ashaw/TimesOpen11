@@ -34,7 +34,8 @@
     <script src="/javascripts/jquery-1.7.1.min.js"></script>
     <script src="/javascripts/underscore-min.js"></script>
     <script>
-        raw_data = JSON.parse(<%=raw @line.get_raw_data.inspect %>);
+        raw_data = <%=raw @line.get_raw_data %>;
+        raw_data_night = <%=raw @line.get_raw_data_night %>;
     </script>
     <script src="/javascripts/lines.js"></script>
     </body>
