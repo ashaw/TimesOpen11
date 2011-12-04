@@ -8,4 +8,5 @@ class Station < ActiveRecord::Base
       [happy.to_f,sad.to_f,happy.to_f+sad.to_f]
   end
 
+
 end

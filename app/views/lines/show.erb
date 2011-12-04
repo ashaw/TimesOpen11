@@ -25,12 +25,17 @@
                 <div class="station-bar">
                     <h3 class="station-name"><%= station.station_name %></h3>
                     <div class="station-line"></div>
-                    <div class="happy-bar" style="width:<%= happy/total * 280 %>px;"></div>
-                    <div class="sad-bar" style="width:<%= sad/total * 280 %>px;"></div>
-                    <p><%= station.get_happiness %></p>
+                    <div class="happy-bar" data-station_id="<%= station.id %>"></div>
+                    <div class="sad-bar" data-station_id="<%= station.id %>"></div>
                 </div>
             <% end %>
         <div id="line-line"></div>
-        </div>
+    </div>
+    <script src="/javascripts/jquery-1.7.1.min.js"></script>
+    <script src="/javascripts/underscore-min.js"></script>
+    <script>
+        raw_data = JSON.parse(<%=raw @line.get_raw_data.inspect %>);
+    </script>
+    <script src="/javascripts/lines.js"></script>
     </body>
 </html>

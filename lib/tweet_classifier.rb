@@ -105,25 +105,22 @@ class TweetClassifier
   def grab_tweets(cons)
     FileUtils.mkdir_p MODELS unless File.exists? MODELS
     training_file = File.join(ROOT, "models", "#{cons}_words.train")
-    return File.read(training_file).split("\n") if File.exists? training_file
+    if File.exists? training_file
+      tweets = File.read(training_file)
+      return tweets.split("\r\n").map do |tweet| 
+        begin
+          json = JSON.parse(tweet)
+          json['text'] if json['user']['lang'] == 'en'
+        rescue
+          nil
+        end
+      end.compact
+    end
+    puts <<-WARN
+      no training data for #{cons} run:
 
-    client = HappySubways.get_auth
-    send("#{cons}_words").map { |word|
-      resp = (1..15).map do |idx|
-        p idx
-        client.search.json?(:q => word, :page => idx, :lang => :en, :rpp => 100).results
-      end.flatten
-      resp.map do |tweet|
-        text = tweet.text.gsub("\n", "")
-        File.open(training_file, (File::WRONLY | File::APPEND | File::CREAT)) { |f| f.puts text }
-        text
-      end
-    }.flatten
-  end
-
-  def self.train!
-    FileUtils.rm_r MODELS if File.exists? MODELS
-    TweetClassifier.new
+      curl --data-urlencode 'track=:)' https://stream.twitter.com/1/statuses/filter.json -uUSERNAME > lib/models/#{cons}_words.train 
+    WARN
   end
 end
 
