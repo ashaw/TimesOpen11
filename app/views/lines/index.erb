@@ -53,7 +53,7 @@
 
 	})
 
-	$('#switcher').hover(function() {
+	$('#switcher').toggle(function() {
 		$.each(circles, function(index, circle) {
 			circle.animate(
 				{ r: s_array[index], fill:'#d93130' },
