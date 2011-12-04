@@ -1,4 +1,4 @@
-class LinesController < ActionController::Base
+class LinesController < ApplicationController
 
   def index
     @lines = Line.order(:name).all.to_json
