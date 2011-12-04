@@ -11,8 +11,8 @@ class StationsController < ApplicationController
   	@min_lat = @min_lng = 180
   	@max_lat = @max_lng = -180
 
-  	max_happy = Station.maximum(:happiness_index)
-  	min_happy = Station.minimum(:happiness_index)
+  	max_happy = Station.maximum(:happiness)
+  	min_happy = Station.minimum(:happiness)
   	happy_r = max_happy - min_happy
 
   	@stations = Station.all
@@ -25,7 +25,7 @@ class StationsController < ApplicationController
   		@max_lng = lng if lng > @max_lng
   		# happy, sad, total = station.get_happiness
   		# happy_index = happy / total
-  		happy_index = (station.happiness_index - min_happy) / happy_r
+  		happy_index = (station.happiness - min_happy) / happy_r
 		  [lat, lng, happy_index, station.station_name]
 		end
 
