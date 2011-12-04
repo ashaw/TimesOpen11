@@ -3,7 +3,10 @@ body{
 }
 
 #topbar{
-    background-color:#222;
+    background-color:#333;
+    transition: background-color 1s;  
+    -moz-transition: background-color 1s;  
+    -webkit-transition: background-color 1s;  
     height:120px;
     position:fixed;
     width:100%;
@@ -13,7 +16,9 @@ body{
     border-bottom:1px ridge #333;
     z-index:500;
 }
-
+#topbar.night{
+    background-color:#222;
+}
 .happy-face-icon{
     position:absolute;
     right:20%;
@@ -24,7 +29,67 @@ body{
     left:20%;
     top:40px;
 }
-
+#time-controls{
+    position:absolute;
+    left:55%;
+    height:34px;
+    width:66px;
+    top:60px;
+}
+#size-controls{
+    position:absolute;
+    left:40%;
+    height:34px;
+    width:66px;
+    top:60px;
+}
+.time-day{
+    position:absolute;
+    background:transparent url('/assets/day_unselected.png') no-repeat top left;
+    width:33px;
+    height:34px;
+    left:0;
+    top:0;
+    cursor:pointer;
+}
+.time-day.selected{
+    background:transparent url('/assets/day_selected.png') no-repeat top left;
+}
+.time-night{
+    position:absolute;
+    background:transparent url('/assets/night_unselected.png') no-repeat top left;
+    width:33px;
+    height:34px;
+    left:33px;
+    cursor:pointer;
+}
+.time-night.selected{
+    background:transparent url('/assets/night_selected.png') no-repeat top left;
+}
+.size-big{
+    position:absolute;
+    background:transparent url('/assets/larger_unselected.png') no-repeat top left;
+    width:33px;
+    height:34px;
+    left:0;
+    top:0;
+    cursor:pointer;
+}
+.size-big.selected{
+    background:transparent url('/assets/larger_selected.png') no-repeat top left;
+}
+.size-small{
+    position:absolute;
+    background:transparent url('/assets/smaller_unselected.png') no-repeat top left;
+    width:33px;
+    height:34px;
+    left:33px;
+    top:0;
+    cursor:pointer;
+}
+.size-small.selected{
+    background:transparent url('/assets/smaller_selected.png') no-repeat top left;
+}
 #line-circles {
   height:20px;
   text-align:center;
@@ -106,8 +171,21 @@ body{
     border:1px ridge #333;
     z-index:100;
     position:relative;
+    transition: height 1s;  
+    -moz-transition: height 1s;  
+    -webkit-transition: height 1s;  
+    transition: margin 1s;  
+    -moz-transition: margin 1s;  
+    -webkit-transition: margin 1s;  
 }
 
+.station-bar.mini{
+    height:5px;
+    margin:3px 0;
+    transition: height 1s;  
+    -moz-transition: height 1s;  
+    -webkit-transition: height 1s;  
+}
 
 .station-bar .station-name{
     color:white;
@@ -120,6 +198,14 @@ body{
     z-index:50;
     position:relative;
     text-shadow:0px 0px 10px #111;
+    transition: font-size 1s;  
+    -moz-transition: font-size 1s;  
+    -webkit-transition: font-size 1s;  
+}
+
+.station-bar.mini .station-name{
+    font-size:9px;
+    margin-top:-2px;
 }
 
 .station-bar .happy-bar{
