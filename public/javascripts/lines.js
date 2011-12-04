@@ -15,10 +15,21 @@ Lines = {
                 total = data[station_id][2];
             $(bar).css({"width":happiness/total * Lines.width});
         });
-    }
+    },
+
+    toggle_data: function(){
+        if (Lines.time === "day"){
+            Lines.load_data(raw_data_night);
+            Lines.time = "night";
+        } else {
+            Lines.load_data(raw_data);
+            Lines.time = "day";
+        }
+    },
 
 }
 
 $(function(){
     Lines.load_data(raw_data);
+    Lines.time = "day"
 })

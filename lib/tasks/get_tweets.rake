@@ -5,7 +5,7 @@ task :get_tweets => :environment do
   client = HappySubways.get_auth
 
   Station.all.each do |entrance|
-      next if entrance.tweets.size > 0
+      next if entrance.tweets.where(:time_string => "night").size > 0
       
       lat =  entrance.latitude
       long = entrance.longitude
@@ -14,7 +14,7 @@ task :get_tweets => :environment do
       raw = client.search.json? :geocode => "#{lat},#{long},0.1km", :rpp => 100, :lang => "en", :q => ""
       bodies = raw.results.map(&:text)
       bodies.each do |tweet|
-        t = Tweet.new({:station_id => station_id, :text => tweet})
+        t = Tweet.new({:station_id => station_id, :text => tweet, :time_string => "night"})
         t.save
       end
   end
