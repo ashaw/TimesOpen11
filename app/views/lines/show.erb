@@ -13,7 +13,15 @@
             <a class="line-circle <% if line.name == @line.name %>selected<% end %>" href="/lines/<%= line.name %>"><img title="<%= line.name %>" src="/assets/<%= line_img(line.name) %>.png" /></a>
         <% end %>
       </div>
-
+      <div id="time-controls">
+      <div class="time-day selected"></div>
+      <div class="time-night"></div>
+      </div>
+      <div id="size-controls">
+      <div class="size-big selected"></div>
+      <div class="size-small"></div>
+      </div>
+          
             <div id="top-line"></div>
             <img src="/assets/Face_Happy.png" class="happy-face-icon"/>
             <img src=" <%= "/assets/#{line_img(@line.name)}_large.png" %>" class="line-icon"/>
