@@ -10,7 +10,7 @@
 
       <div id="line-circles">
         <% Line.order(:name).all.each do |line| %>
-            <a class="line-circle <% if line.name == @line.name %>selected<% end %>" href="/lines/<%= line.name %>"><img title="<%= line.name %>" src="/assets/<%= line_img(line.name) %>.png" /></a>
+            <a class="line-circle <% if line.name == @line.name %>selected<% end %>" href="/lines/<%= line.name %>.html"><img title="<%= line.name %>" src="/assets/<%= line_img(line.name) %>.png" /></a>
         <% end %>
       </div>
       <div id="time-controls">

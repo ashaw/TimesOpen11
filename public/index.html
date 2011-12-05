@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tohack11</title>
+  <link href="/stylesheets/lines.css?1323103661" media="screen" rel="stylesheet" type="text/css" />
+  <meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="7Hjz9VnY0U+GByFv3PTvNuLlEr7vSZ7cKR3+fyHKs0E="/>
+</head>
+<body>
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/raphael.js"></script>
 <script type="text/javascript" src="/javascripts/underscore.js"></script>
@@ -60,7 +70,7 @@
 		x, y,
 		max_happy, min_happy
 
-	var lines = <%= raw @lines %>;
+	var lines = [{"line":{"happiness":0.731758187697196,"name":"1","sadness":0.268241812302804,"id":22}},{"line":{"happiness":0.704717488811345,"name":"2","sadness":0.295282511188654,"id":8}},{"line":{"happiness":0.703022034891311,"name":"3","sadness":0.296977965108689,"id":9}},{"line":{"happiness":0.724689083937801,"name":"4","sadness":0.275310916062199,"id":10}},{"line":{"happiness":0.692477168810574,"name":"5","sadness":0.307522831189426,"id":11}},{"line":{"happiness":0.744798914895728,"name":"6","sadness":0.255201085104272,"id":14}},{"line":{"happiness":0.74475649534509,"name":"7","sadness":0.25524350465491,"id":23}},{"line":{"happiness":0.712379120981518,"name":"A","sadness":0.287620879018482,"id":18}},{"line":{"happiness":0.639528828833912,"name":"B","sadness":0.360471171166088,"id":5}},{"line":{"happiness":0.678687083345564,"name":"C","sadness":0.321312916654436,"id":19}},{"line":{"happiness":0.662098353384198,"name":"D","sadness":0.337901646615802,"id":6}},{"line":{"happiness":0.703581566800165,"name":"E","sadness":0.296418433199835,"id":20}},{"line":{"happiness":0.696302225202817,"name":"F","sadness":0.303697774797183,"id":3}},{"line":{"happiness":0.684874129840664,"name":"FS","sadness":0.315125870159336,"id":12}},{"line":{"happiness":0.711085624332815,"name":"G","sadness":0.288914375667185,"id":4}},{"line":{"happiness":0.738593813593814,"name":"GS","sadness":0.261406186406186,"id":21}},{"line":{"happiness":0.714177240384137,"name":"H","sadness":0.285822759615863,"id":24}},{"line":{"happiness":0.685856735619437,"name":"J","sadness":0.314143264380563,"id":16}},{"line":{"happiness":0.697529498544507,"name":"L","sadness":0.302470501455493,"id":13}},{"line":{"happiness":0.712015379310285,"name":"M","sadness":0.287984620689715,"id":15}},{"line":{"happiness":0.669710959340597,"name":"N","sadness":0.330289040659403,"id":2}},{"line":{"happiness":0.649767060628134,"name":"Q","sadness":0.350232939371867,"id":7}},{"line":{"happiness":0.703989382381872,"name":"R","sadness":0.296010617618128,"id":1}},{"line":{"happiness":0.684061633502181,"name":"Z","sadness":0.315938366497819,"id":17}}];
 	// console.log(lines)
 
 	lines = _.map(lines, function(x) { return x['line'] })
@@ -133,3 +143,6 @@
 
 
 </script>
+
+</body>
+</html>
