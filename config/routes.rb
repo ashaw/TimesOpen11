@@ -1,5 +1,5 @@
 Tohack11::Application.routes.draw do
-  root :to => "stations#index"
+  root :to => "lines#index"
   match 'voronoi' => 'stations#voronoi'
   resources :stations, :only => [:index, :show]
   match "lines" => "lines#index"
